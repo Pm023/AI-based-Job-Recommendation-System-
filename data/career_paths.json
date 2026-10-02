@@ -1,0 +1,72 @@
+{
+  "Backend Developer": {
+    "title": "Backend Developer",
+    "description": "Designs server-side logic, RESTful APIs, database architectures, and cloud services.",
+    "core_skills": ["Python", "SQL", "REST API", "FastAPI", "Flask", "Django"],
+    "secondary_skills": ["Git", "Docker", "PostgreSQL", "Redis"],
+    "learning_path": [
+      {"step": 1, "skill": "Python", "focus": "Master core syntax, OOP, and async programming."},
+      {"step": 2, "skill": "SQL & Relational DBs", "focus": "Learn complex queries, indexing, and ORMs (SQLAlchemy)."},
+      {"step": 3, "skill": "REST API Frameworks", "focus": "Build web APIs with FastAPI / Flask."},
+      {"step": 4, "skill": "Git & Version Control", "focus": "Manage branches, pull requests, and Git workflows."},
+      {"step": 5, "skill": "Docker & Containerization", "focus": "Containerize backend microservices for cloud deployment."}
+    ],
+    "alternatives": ["Python Developer", "API Developer", "Full Stack Developer"]
+  },
+  "Data Analyst": {
+    "title": "Data Analyst",
+    "description": "Inspects, cleans, transforms, and models data to discover useful information and support decision-making.",
+    "core_skills": ["Python", "SQL", "Pandas", "NumPy", "Statistics", "Excel"],
+    "secondary_skills": ["Power BI", "Data Visualization", "Git"],
+    "learning_path": [
+      {"step": 1, "skill": "Python Basics", "focus": "Master Python data structures and control flow."},
+      {"step": 2, "skill": "SQL & Data Extraction", "focus": "Query data tables, aggregations, and joins."},
+      {"step": 3, "skill": "Pandas & NumPy", "focus": "Data cleaning, transformation, and statistical summary."},
+      {"step": 4, "skill": "Data Visualization & Power BI", "focus": "Build interactive executive dashboards."},
+      {"step": 5, "skill": "Applied Statistics", "focus": "Hypothesis testing, regression, and trends."}
+    ],
+    "alternatives": ["Data Science Intern", "Business Intelligence Developer", "Python Developer"]
+  },
+  "AI Engineer": {
+    "title": "AI Engineer",
+    "description": "Builds, deploys, and maintains artificial intelligence and machine learning models for production applications.",
+    "core_skills": ["Python", "Machine Learning", "NLP", "PyTorch", "NumPy"],
+    "secondary_skills": ["Deep Learning", "TensorFlow", "REST API", "Docker"],
+    "learning_path": [
+      {"step": 1, "skill": "Python for AI", "focus": "Scientific computing with NumPy & Pandas."},
+      {"step": 2, "skill": "Machine Learning Fundamentals", "focus": "Supervised/unsupervised algorithms with scikit-learn."},
+      {"step": 3, "skill": "Natural Language Processing", "focus": "Text processing, tokenization, and NLP pipelines."},
+      {"step": 4, "skill": "Deep Learning & PyTorch", "focus": "Neural networks, loss functions, and optimization."},
+      {"step": 5, "skill": "Model Deployment & APIs", "focus": "Expose trained AI models via FastAPI REST endpoints."}
+    ],
+    "alternatives": ["ML Engineer", "NLP Researcher", "Data Science Intern"]
+  },
+  "Full Stack Developer": {
+    "title": "Full Stack Developer",
+    "description": "Handles both client-side user interfaces and server-side backend application development.",
+    "core_skills": ["HTML", "CSS", "JavaScript", "React", "Python", "SQL"],
+    "secondary_skills": ["REST API", "Git", "Node.js", "Docker"],
+    "learning_path": [
+      {"step": 1, "skill": "HTML & CSS", "focus": "Responsive web layouts and modern styling."},
+      {"step": 2, "skill": "JavaScript (ES6+)", "focus": "DOM manipulation, async/await, and event handling."},
+      {"step": 3, "skill": "Frontend Framework (React)", "focus": "Component state, hooks, and SPA architecture."},
+      {"step": 4, "skill": "Backend Framework (Python/Flask)", "focus": "RESTful endpoints and database connection."},
+      {"step": 5, "skill": "Database & Integration", "focus": "Connect frontend components with SQL backends."}
+    ],
+    "alternatives": ["Frontend Developer", "Backend Developer", "Web Developer"]
+  },
+  "DevOps Engineer": {
+    "title": "DevOps Engineer",
+    "description": "Bridges software development and IT operations to automate infrastructure, deployment, and testing.",
+    "core_skills": ["Linux", "Docker", "Kubernetes", "CI/CD", "AWS"],
+    "secondary_skills": ["Python", "Git", "Azure", "Security"],
+    "learning_path": [
+      {"step": 1, "skill": "Linux Systems Administration", "focus": "Command line, bash scripting, file permissions."},
+      {"step": 2, "skill": "Git & Version Control", "focus": "Repository workflows and automated hooks."},
+      {"step": 3, "skill": "Docker Containerization", "focus": "Write Dockerfiles and compose multi-container stacks."},
+      {"step": 4, "skill": "CI/CD Pipelines", "focus": "Automate testing and builds using GitHub Actions."},
+      {"step": 5, "skill": "Cloud Infrastructure (AWS)", "focus": "Manage cloud servers, networking, and Kubernetes."}
+    ],
+    "alternatives": ["Cloud Intern", "Cloud Infrastructure Associate", "Python Developer"]
+  }
+}

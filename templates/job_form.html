@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if job %}Edit Job - {{ job.title }}{% else %}Add New Job{% endif %} | Admin Portal{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h2 class="fw-bold mb-0">
+                    <i class="bi bi-briefcase-plus text-primary me-2"></i>
+                    {% if job %}Edit Job Posting{% else %}Add New Job Posting{% endif %}
+                </h2>
+                <a href="{{ url_for('admin.manage_jobs') }}" class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-arrow-left"></i> Cancel & Back
+                </a>
+            </div>
+
+            <form method="POST" action="{% if job %}{{ url_for('admin.edit_job', job_id=job.id) }}{% else %}{{ url_for('admin.add_job') }}{% endif %}">
+                <!-- JOB DETAILS CARD -->
+                <div class="cm-card mb-4 bg-white p-4">
+                    <h5 class="fw-bold mb-3 text-primary">1. Job Metadata</h5>
+                    
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold">Job Title</label>
+                            <input type="text" name="title" class="form-control" value="{{ job.title if job else '' }}" placeholder="e.g. Python Backend Developer" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold">Company Name</label>
+                            <input type="text" name="company" class="form-control" value="{{ job.company if job else '' }}" placeholder="e.g. TechNova Solutions" required>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-4">
+                            <label class="form-label small fw-semibold">Location</label>
+                            <input type="text" name="location" class="form-control" value="{{ job.location if job else 'Ahmedabad' }}" placeholder="e.g. Ahmedabad / Remote" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-semibold">Experience Level</label>
+                            <input type="text" name="experience" class="form-control" value="{{ job.experience if job else '0-2 Years' }}" placeholder="e.g. 0-2 Years or Fresher" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-semibold">Salary Range / Stipend</label>
+                            <input type="text" name="salary" class="form-control" value="{{ job.salary if job else '₹4.5 - ₹6.5 LPA' }}" placeholder="e.g. ₹4.5 - ₹6.5 LPA">
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold">Job Type</label>
+                            <select name="job_type" class="form-select">
+                                <option value="Full-time" {% if job and job.job_type == 'Full-time' %}selected{% endif %}>Full-time</option>
+                                <option value="Internship" {% if job and job.job_type == 'Internship' %}selected{% endif %}>Internship</option>
+                                <option value="Part-time" {% if job and job.job_type == 'Part-time' %}selected{% endif %}>Part-time</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold">Application URL Placeholder</label>
+                            <input type="url" name="application_url" class="form-control" value="{{ job.application_url if job else 'https://example.com/careers' }}">
+                        </div>
+                    </div>
+
+                    <div class="mb-0">
+                        <label class="form-label small fw-semibold">Job Description</label>
+                        <textarea name="description" class="form-control" rows="4" placeholder="Detailed job description and responsibilities..." required>{{ job.description if job else '' }}</textarea>
+                    </div>
+                </div>
+
+                <!-- REQUIRED SKILLS & WEIGHTS CARD -->
+                <div class="cm-card mb-4 bg-white p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <div>
+                            <h5 class="fw-bold mb-0 text-primary">2. Required Skills & Weights</h5>
+                            <small class="text-muted">Specify required proficiency levels and scoring weights for AI compatibility.</small>
+                        </div>
+                        <button type="button" id="add-job-skill-btn" class="btn btn-outline-cm btn-sm">
+                            <i class="bi bi-plus-circle"></i> Add Skill Weight
+                        </button>
+                    </div>
+
+                    <div id="job-skills-container">
+                        {% if job and job.job_skills %}
+                            {% for js in job.job_skills %}
+                                <div class="row g-2 align-items-center mb-2 job-skill-row">
+                                    <div class="col-md-5">
+                                        <input type="text" name="skill_name" class="form-control" value="{{ js.skill.name }}" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select name="skill_proficiency" class="form-select">
+                                            <option value="Beginner" {% if js.required_proficiency == 'Beginner' %}selected{% endif %}>Beginner</option>
+                                            <option value="Basic" {% if js.required_proficiency == 'Basic' %}selected{% endif %}>Basic</option>
+                                            <option value="Intermediate" {% if js.required_proficiency == 'Intermediate' %}selected{% endif %}>Intermediate</option>
+                                            <option value="Advanced" {% if js.required_proficiency == 'Advanced' %}selected{% endif %}>Advanced</option>
+                                            <option value="Expert" {% if js.required_proficiency == 'Expert' %}selected{% endif %}>Expert</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="number" name="skill_weight" class="form-control" value="{{ js.weight }}" placeholder="Weight %" required>
+                                    </div>
+                                    <div class="col-md-1 text-center">
+                                        <button type="button" class="btn btn-outline-danger btn-sm remove-job-skill-btn"><i class="bi bi-trash"></i></button>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="row g-2 align-items-center mb-2 job-skill-row">
+                                <div class="col-md-5">
+                                    <input type="text" name="skill_name" class="form-control" value="Python" placeholder="Skill Name" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <select name="skill_proficiency" class="form-select">
+                                        <option value="Intermediate" selected>Intermediate</option>
+                                        <option value="Advanced">Advanced</option>
+                                        <option value="Basic">Basic</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="number" name="skill_weight" class="form-control" value="30" placeholder="Weight %" required>
+                                </div>
+                                <div class="col-md-1 text-center">
+                                    <button type="button" class="btn btn-outline-danger btn-sm remove-job-skill-btn"><i class="bi bi-trash"></i></button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary-cm btn-lg px-4">
+                        <i class="bi bi-check-circle me-1"></i> Save Job Posting
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const addBtn = document.getElementById('add-job-skill-btn');
+    const container = document.getElementById('job-skills-container');
+
+    if (addBtn && container) {
+        addBtn.addEventListener('click', function() {
+            const row = document.createElement('div');
+            row.className = 'row g-2 align-items-center mb-2 job-skill-row';
+            row.innerHTML = `
+                <div class="col-md-5">
+                    <input type="text" name="skill_name" class="form-control" placeholder="e.g. Docker, SQL, Git" required>
+                </div>
+                <div class="col-md-4">
+                    <select name="skill_proficiency" class="form-select">
+                        <option value="Beginner">Beginner</option>
+                        <option value="Basic">Basic</option>
+                        <option value="Intermediate" selected>Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                        <option value="Expert">Expert</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <input type="number" name="skill_weight" class="form-control" value="20" placeholder="Weight %" required>
+                </div>
+                <div class="col-md-1 text-center">
+                    <button type="button" class="btn btn-outline-danger btn-sm remove-job-skill-btn"><i class="bi bi-trash"></i></button>
+                </div>
+            `;
+            container.appendChild(row);
+        });
+
+        container.addEventListener('click', function(e) {
+            if (e.target.closest('.remove-job-skill-btn')) {
+                const row = e.target.closest('.job-skill-row');
+                if (container.querySelectorAll('.job-skill-row').length > 1) {
+                    row.remove();
+                }
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}Skill Gap Analysis - CareerMatch AI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- HEADER AND TARGET ROLE SELECTOR -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+        <div>
+            <h2 class="fw-bold mb-1"><i class="bi bi-bar-chart-steps text-primary me-2"></i> Your Skill Gap Analysis</h2>
+            <p class="text-muted mb-0">Evaluate your current skill inventory against required competencies for your target role.</p>
+        </div>
+
+        <form method="GET" action="{{ url_for('recommendations.skill_gap') }}" class="d-flex align-items-center gap-2">
+            <label class="small fw-bold text-nowrap">Target Role:</label>
+            <select name="role" class="form-select form-select-sm" onchange="this.form.submit()">
+                <option value="Backend Developer" {% if target_role == 'Backend Developer' %}selected{% endif %}>Backend Developer</option>
+                <option value="Data Analyst" {% if target_role == 'Data Analyst' %}selected{% endif %}>Data Analyst</option>
+                <option value="AI Engineer" {% if target_role == 'AI Engineer' %}selected{% endif %}>AI Engineer</option>
+                <option value="Full Stack Developer" {% if target_role == 'Full Stack Developer' %}selected{% endif %}>Full Stack Developer</option>
+            </select>
+        </form>
+    </div>
+
+    <div class="row g-4">
+        <!-- LEFT COLUMN: SKILL GAP METRICS & SKILL CLASSIFICATION -->
+        <div class="col-lg-7">
+            <div class="cm-card mb-4 bg-white p-4">
+                <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-3">
+                    <div>
+                        <h4 class="fw-bold text-dark mb-0">{{ target_role }} Gap Report</h4>
+                        <small class="text-muted">{{ role_description }}</small>
+                    </div>
+                    <div class="text-end">
+                        <div class="h3 fw-extrabold text-danger mb-0">{{ skill_analysis.gap_score }}%</div>
+                        <small class="text-muted fw-bold">Overall Skill Gap</small>
+                    </div>
+                </div>
+
+                <!-- 1. STRONG MATCH SKILLS -->
+                <div class="mb-4">
+                    <h6 class="fw-bold text-success mb-2"><i class="bi bi-check-circle-fill me-1"></i> Strong Match Skills (Mastered)</h6>
+                    {% if skill_analysis.matched_skills %}
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for sk in skill_analysis.matched_skills %}
+                                <span class="skill-tag skill-tag-matched p-2 fs-6">
+                                    <i class="bi bi-check-lg text-success"></i> <strong>{{ sk.name }}</strong>
+                                    <small class="text-muted ms-1">({{ sk.user_proficiency }})</small>
+                                </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted small">No strong matching skills detected for this target role yet.</p>
+                    {% endif %}
+                </div>
+
+                <!-- 2. PARTIAL MATCH SKILLS -->
+                <div class="mb-4">
+                    <h6 class="fw-bold text-warning mb-2"><i class="bi bi-dash-circle-fill me-1"></i> Partial Match Skills (Refinement Required)</h6>
+                    {% if skill_analysis.partial_skills %}
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for sk in skill_analysis.partial_skills %}
+                                <span class="skill-tag skill-tag-partial p-2 fs-6">
+                                    <i class="bi bi-exclamation-triangle"></i> <strong>{{ sk.name }}</strong>
+                                    <small class="text-dark ms-1">({{ sk.user_proficiency }} vs Req: {{ sk.required_proficiency }})</small>
+                                </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted small">No partial skills.</p>
+                    {% endif %}
+                </div>
+
+                <!-- 3. MISSING SKILLS -->
+                <div class="mb-4">
+                    <h6 class="fw-bold text-danger mb-2"><i class="bi bi-x-circle-fill me-1"></i> Missing Required Skills</h6>
+                    {% if skill_analysis.missing_skills %}
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for sk in skill_analysis.missing_skills %}
+                                <span class="skill-tag skill-tag-missing p-2 fs-6">
+                                    <i class="bi bi-x-lg"></i> <strong>{{ sk.name }}</strong>
+                                    <small class="text-muted ms-1">(Req: {{ sk.required_proficiency }})</small>
+                                </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted small">Great job! You possess coverage for all core skills in this profile.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN: SUGGESTED LEARNING PATH ROADMAP -->
+        <div class="col-lg-5">
+            <div class="cm-card mb-4 bg-white p-4">
+                <h5 class="fw-bold mb-3 text-primary"><i class="bi bi-map me-2"></i> Suggested Learning Path</h5>
+                <p class="text-muted small mb-4">Step-by-step learning roadmap tailored to bridge your skill gaps for <strong>{{ target_role }}</strong>:</p>
+
+                <div class="timeline position-relative ps-3">
+                    {% for step in learning_path %}
+                        <div class="mb-4 position-relative border-start border-2 border-primary ps-3 pb-1">
+                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                <span class="badge {{ step.status_class }} px-2 py-1">Step {{ step.step }}: {{ step.skill }}</span>
+                                <span class="small fw-bold text-muted">{{ step.status }}</span>
+                            </div>
+                            <p class="small text-secondary mb-0">{{ step.focus }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="mt-3 p-3 bg-light rounded-3 text-center">
+                    <small class="text-muted d-block mb-2">Want to update your mastered skills after learning?</small>
+                    <a href="{{ url_for('user.profile_setup') }}" class="btn btn-outline-cm btn-sm">
+                        <i class="bi bi-pencil-square"></i> Update Skill Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

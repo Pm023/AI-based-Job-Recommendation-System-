@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Upload Resume - CareerMatch AI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="cm-card p-4 bg-white shadow-sm mb-4">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="stat-icon bg-primary-subtle text-primary" style="width:50px; height:50px; font-size:1.5rem;">
+                        <i class="bi bi-file-earmark-pdf-fill"></i>
+                    </div>
+                    <div>
+                        <h3 class="fw-bold mb-0">NLP Resume Skill Extractor</h3>
+                        <p class="text-muted small mb-0">Upload your PDF resume to automatically extract skills via our explainable NLP pipeline.</p>
+                    </div>
+                </div>
+
+                <!-- RESUME UPLOAD FORM WITH DROPZONE BOX -->
+                <form id="resume-upload-form" enctype="multipart/form-data" class="mb-4">
+                    <div class="mb-4">
+                        <div class="dropzone-box" onclick="document.getElementById('pdf-input').click()">
+                            <i class="bi bi-cloud-arrow-up text-primary display-4 mb-2 d-block"></i>
+                            <h6 class="fw-bold text-dark mb-1">Click or drag & drop your PDF resume here</h6>
+                            <p class="text-muted small mb-2">Supported format: PDF (Max 16MB)</p>
+                            <span class="badge bg-light text-primary border px-3 py-1">Browse PDF File</span>
+                            <input type="file" id="pdf-input" name="resume" class="d-none" accept=".pdf" onchange="document.getElementById('selected-file-name').innerText = this.files[0] ? this.files[0].name : ''">
+                            <div id="selected-file-name" class="mt-2 text-success fw-bold small"></div>
+                        </div>
+                    </div>
+
+                    <div class="text-muted small mb-2">
+                        <em>Or paste your resume text directly below:</em>
+                    </div>
+
+                    <div class="mb-3">
+                        <textarea name="resume_text" class="form-control" rows="4" placeholder="Paste resume text here (e.g. Student programmer proficient in Python, SQL, FastAPI, HTML, and Git)..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary-cm w-100 py-2 justify-content-center">
+                        <i class="bi bi-cpu me-2"></i> Extract Skills via NLP Pipeline
+                    </button>
+                </form>
+
+                <!-- STATUS ALERT AREA -->
+                <div id="resume-status" class="d-none"></div>
+
+                <!-- EXTRACTED SKILLS CONFIRMATION SECTION -->
+                <div id="extracted-skills-result" class="d-none mt-4 p-3 bg-light rounded-3 border">
+                    <h5 class="fw-bold text-dark mb-2"><i class="bi bi-search me-1 text-primary"></i> Detected Resume Skills</h5>
+                    <p class="text-muted small mb-3">Review the NLP extracted skills below and adjust proficiency levels before saving to your profile:</p>
+
+                    <div id="detected-skills-list" class="row g-2 mb-3"></div>
+
+                    <div class="text-end border-top pt-3">
+                        <button type="button" id="save-confirmed-skills-btn" class="btn btn-success">
+                            <i class="bi bi-check-lg me-1"></i> Save Confirmed Skills & Re-analyze Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NLP EXPLAINABILITY CARD -->
+            <div class="cm-card p-4 bg-light border">
+                <h6 class="fw-bold text-dark mb-2"><i class="bi bi-info-circle text-primary me-2"></i> How NLP Extraction Works</h6>
+                <ol class="small text-muted mb-0 ps-3">
+                    <li class="mb-1"><strong>PDF Text Extraction:</strong> Extracts raw text using <code>pypdf</code> / <code>PyMuPDF</code>.</li>
+                    <li class="mb-1"><strong>Text Preprocessing:</strong> Lowercases text and strips noise while preserving special characters (e.g. C++).</li>
+                    <li class="mb-1"><strong>Tokenization & Stopword Removal:</strong> Removes common English words (the, and, in, with).</li>
+                    <li><strong>Dictionary & Alias Mapping:</strong> Matches tokens and n-grams against our 45+ skill ontology dictionary.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+{% endblock %}

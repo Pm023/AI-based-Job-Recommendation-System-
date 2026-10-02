@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard - CareerMatch AI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- HEADER -->
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <div>
+            <span class="badge bg-dark text-white fw-bold mb-1"><i class="bi bi-shield-check"></i> System Administrator</span>
+            <h2 class="fw-bold mb-0">Admin Control Center</h2>
+        </div>
+        <a href="{{ url_for('admin.add_job') }}" class="btn btn-primary-cm">
+            <i class="bi bi-plus-lg me-1"></i> Add New Job
+        </a>
+    </div>
+
+    <!-- STATS OVERVIEW CARDS -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="stat-box">
+                <div class="stat-icon bg-primary-subtle text-primary">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <div>
+                    <h3 class="fw-bold mb-0">{{ total_users }}</h3>
+                    <small class="text-muted fw-semibold">Registered Students</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-box">
+                <div class="stat-icon bg-success-subtle text-success">
+                    <i class="bi bi-briefcase-fill"></i>
+                </div>
+                <div>
+                    <h3 class="fw-bold mb-0">{{ total_jobs }}</h3>
+                    <small class="text-muted fw-semibold">Active Jobs</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-box">
+                <div class="stat-icon bg-info-subtle text-info">
+                    <i class="bi bi-stars"></i>
+                </div>
+                <div>
+                    <h3 class="fw-bold mb-0">{{ total_recs }}</h3>
+                    <small class="text-muted fw-semibold">Total Recommendations</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-box">
+                <div class="stat-icon bg-warning-subtle text-warning">
+                    <i class="bi bi-graph-up-arrow"></i>
+                </div>
+                <div>
+                    <h3 class="fw-bold mb-0">{{ avg_match }}%</h3>
+                    <small class="text-muted fw-semibold">Average Match Score</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- RECENT STUDENTS TABLE -->
+        <div class="col-lg-6">
+            <div class="cm-card bg-white p-4">
+                <h5 class="fw-bold mb-3"><i class="bi bi-person-check text-primary me-2"></i> Recent Student Registrations</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle small">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Registered</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for u in recent_users %}
+                                <tr>
+                                    <td class="fw-bold">{{ u.name }}</td>
+                                    <td>{{ u.email }}</td>
+                                    <td class="text-muted">{{ u.created_at.strftime('%Y-%m-%d') }}</td>
+                                </tr>
+                            {% else %}
+                                <tr><td colspan="3" class="text-muted text-center">No students registered yet.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- RECENT JOBS MANAGEMENT PREVIEW -->
+        <div class="col-lg-6">
+            <div class="cm-card bg-white p-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="fw-bold mb-0"><i class="bi bi-briefcase text-primary me-2"></i> Recently Added Jobs</h5>
+                    <a href="{{ url_for('admin.manage_jobs') }}" class="small fw-semibold text-primary">Manage All <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle small">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Job Title</th>
+                                <th>Company</th>
+                                <th>Location</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for j in recent_jobs %}
+                                <tr>
+                                    <td class="fw-bold">{{ j.title }}</td>
+                                    <td>{{ j.company }}</td>
+                                    <td>{{ j.location }}</td>
+                                    <td>
+                                        <a href="{{ url_for('admin.edit_job', job_id=j.id) }}" class="btn btn-sm btn-outline-primary py-0 px-2">Edit</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

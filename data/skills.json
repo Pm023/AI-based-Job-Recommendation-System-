@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "name": "Python",
+    "category": "Programming Languages",
+    "aliases": ["py", "python3", "python 3"]
+  },
+  {
+    "id": 2,
+    "name": "JavaScript",
+    "category": "Programming Languages",
+    "aliases": ["js", "es6", "javascript", "ecmascript"]
+  },
+  {
+    "id": 3,
+    "name": "Java",
+    "category": "Programming Languages",
+    "aliases": ["java", "core java", "j2ee"]
+  },
+  {
+    "id": 4,
+    "name": "HTML",
+    "category": "Frontend",
+    "aliases": ["html5", "html"]
+  },
+  {
+    "id": 5,
+    "name": "CSS",
+    "category": "Frontend",
+    "aliases": ["css3", "css", "flexbox", "grid"]
+  },
+  {
+    "id": 6,
+    "name": "React",
+    "category": "Frontend",
+    "aliases": ["reactjs", "react.js", "react"]
+  },
+  {
+    "id": 7,
+    "name": "Django",
+    "category": "Backend",
+    "aliases": ["django", "django rest framework", "drf"]
+  },
+  {
+    "id": 8,
+    "name": "Flask",
+    "category": "Backend",
+    "aliases": ["flask", "flask python"]
+  },
+  {
+    "id": 9,
+    "name": "FastAPI",
+    "category": "Backend",
+    "aliases": ["fastapi", "fast api"]
+  },
+  {
+    "id": 10,
+    "name": "SQL",
+    "category": "Database",
+    "aliases": ["sql", "rdbms", "relational database", "queries"]
+  },
+  {
+    "id": 11,
+    "name": "PostgreSQL",
+    "category": "Database",
+    "aliases": ["postgres", "postgresql", "psql"]
+  },
+  {
+    "id": 12,
+    "name": "MongoDB",
+    "category": "Database",
+    "aliases": ["mongodb", "mongo", "nosql"]
+  },
+  {
+    "id": 13,
+    "name": "Git",
+    "category": "Tools & DevOps",
+    "aliases": ["git", "github", "gitlab", "version control"]
+  },
+  {
+    "id": 14,
+    "name": "Docker",
+    "category": "Tools & DevOps",
+    "aliases": ["docker", "containerization", "containers"]
+  },
+  {
+    "id": 15,
+    "name": "REST API",
+    "category": "Backend",
+    "aliases": ["rest api", "rest", "restful", "api development", "apis"]
+  },
+  {
+    "id": 16,
+    "name": "Pandas",
+    "category": "Data Science",
+    "aliases": ["pandas", "dataframe"]
+  },
+  {
+    "id": 17,
+    "name": "NumPy",
+    "category": "Data Science",
+    "aliases": ["numpy", "arrays"]
+  },
+  {
+    "id": 18,
+    "name": "Machine Learning",
+    "category": "AI/ML",
+    "aliases": ["machine learning", "ml", "sklearn", "scikit-learn"]
+  },
+  {
+    "id": 19,
+    "name": "NLP",
+    "category": "AI/ML",
+    "aliases": ["nlp", "natural language processing", "spacy", "nltk", "text processing"]
+  },
+  {
+    "id": 20,
+    "name": "Deep Learning",
+    "category": "AI/ML",
+    "aliases": ["deep learning", "dl", "neural networks", "ann", "cnn"]
+  },
+  {
+    "id": 21,
+    "name": "PyTorch",
+    "category": "AI/ML",
+    "aliases": ["pytorch", "torch"]
+  },
+  {
+    "id": 22,
+    "name": "TensorFlow",
+    "category": "AI/ML",
+    "aliases": ["tensorflow", "tf", "keras"]
+  },
+  {
+    "id": 23,
+    "name": "Statistics",
+    "category": "Data Science",
+    "aliases": ["statistics", "stat", "probability", "statistical analysis"]
+  },
+  {
+    "id": 24,
+    "name": "Excel",
+    "category": "Data Analysis",
+    "aliases": ["excel", "ms excel", "spreadsheets", "vlookup"]
+  },
+  {
+    "id": 25,
+    "name": "Power BI",
+    "category": "Data Analysis",
+    "aliases": ["power bi", "powerbi", "bi tools", "data visualization"]
+  },
+  {
+    "id": 26,
+    "name": "AWS",
+    "category": "Cloud & Infrastructure",
+    "aliases": ["aws", "amazon web services", "ec2", "s3"]
+  },
+  {
+    "id": 27,
+    "name": "Azure",
+    "category": "Cloud & Infrastructure",
+    "aliases": ["azure", "microsoft azure"]
+  },
+  {
+    "id": 28,
+    "name": "Linux",
+    "category": "Operating Systems & DevOps",
+    "aliases": ["linux", "ubuntu", "bash", "shell scripting"]
+  },
+  {
+    "id": 29,
+    "name": "Node.js",
+    "category": "Backend",
+    "aliases": ["node", "nodejs", "node.js", "express"]
+  },
+  {
+    "id": 30,
+    "name": "TypeScript",
+    "category": "Programming Languages",
+    "aliases": ["ts", "typescript"]
+  },
+  {
+    "id": 31,
+    "name": "Bootstrap",
+    "category": "Frontend",
+    "aliases": ["bootstrap", "bootstrap 5", "bootstrap4"]
+  },
+  {
+    "id": 32,
+    "name": "C++",
+    "category": "Programming Languages",
+    "aliases": ["cpp", "c++", "cplusplus"]
+  },
+  {
+    "id": 33,
+    "name": "Data Structures",
+    "category": "Computer Science",
+    "aliases": ["dsa", "data structures", "algorithms", "problem solving"]
+  },
+  {
+    "id": 34,
+    "name": "Redis",
+    "category": "Database",
+    "aliases": ["redis", "caching", "in-memory database"]
+  },
+  {
+    "id": 35,
+    "name": "GraphQL",
+    "category": "Backend",
+    "aliases": ["graphql", "gql"]
+  },
+  {
+    "id": 36,
+    "name": "Kubernetes",
+    "category": "Tools & DevOps",
+    "aliases": ["k8s", "kubernetes"]
+  },
+  {
+    "id": 37,
+    "name": "CI/CD",
+    "category": "Tools & DevOps",
+    "aliases": ["ci/cd", "continuous integration", "github actions", "jenkins"]
+  },
+  {
+    "id": 38,
+    "name": "Tailwind CSS",
+    "category": "Frontend",
+    "aliases": ["tailwind", "tailwindcss"]
+  },
+  {
+    "id": 39,
+    "name": "Vue.js",
+    "category": "Frontend",
+    "aliases": ["vue", "vuejs", "vue.js"]
+  },
+  {
+    "id": 40,
+    "name": "Cybersecurity",
+    "category": "Security",
+    "aliases": ["cybersecurity", "security", "network security", "ethical hacking"]
+  }
+]

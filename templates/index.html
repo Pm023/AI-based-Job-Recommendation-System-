@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+
+{% block title %}CareerMatch AI - Your Skills. Your Match. Your Next Opportunity.{% endblock %}
+
+{% block content %}
+<!-- HERO SECTION -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+                <div class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill mb-3">
+                    <i class="bi bi-stars me-1"></i> Explainable AI Recommendation System
+                </div>
+                <h1 class="hero-headline mb-3">
+                    Find Jobs That Match Your Skills.
+                </h1>
+                <p class="lead text-secondary mb-4">
+                    CareerMatch AI analyzes your skills, education, experience and interests to recommend relevant opportunities and show you exactly how to improve your career profile.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{{ url_for('auth.register') }}" class="btn btn-primary-cm btn-lg">
+                        <i class="bi bi-person-lines-fill me-1"></i> Build My Profile
+                    </a>
+                    <a href="{{ url_for('jobs.recommended_jobs') }}" class="btn btn-outline-cm btn-lg">
+                        <i class="bi bi-search me-1"></i> Explore Jobs
+                    </a>
+                </div>
+
+                <div class="mt-4 pt-3 d-flex align-items-center gap-4 text-muted small">
+                    <div><i class="bi bi-check-circle-fill text-success me-1"></i> Transparent Matching</div>
+                    <div><i class="bi bi-check-circle-fill text-success me-1"></i> Fuzzy Skill Logic</div>
+                    <div><i class="bi bi-check-circle-fill text-success me-1"></i> NLP Resume Analysis</div>
+                </div>
+            </div>
+
+            <!-- VISUAL AI MATCHING ILLUSTRATION CARD -->
+            <div class="col-lg-5">
+                <div class="cm-card shadow-lg p-4 bg-white position-relative overflow-hidden">
+                    <div class="position-absolute top-0 end-0 bg-primary text-white px-3 py-1 rounded-bottom-start small fw-bold">
+                        <i class="bi bi-cpu me-1"></i> Explainable AI Match
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="stat-icon bg-primary-subtle text-primary">
+                            <i class="bi bi-code-slash"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-0 fw-bold">Python Backend Developer</h5>
+                            <small class="text-muted">TechNova Solutions · Ahmedabad</small>
+                        </div>
+                    </div>
+
+                    <!-- CIRCULAR SCORE DEMO -->
+                    <div class="bg-light rounded-3 p-3 mb-3 text-center border">
+                        <div class="match-badge match-badge-excellent mb-2 fs-6">
+                            <i class="bi bi-check-circle-fill"></i> 89% MATCH SCORE
+                        </div>
+                        <div class="progress progress-cm mb-2">
+                            <div class="progress-bar progress-cm-bar" style="width: 89%"></div>
+                        </div>
+                        <small class="text-muted">Weighted: Skill (40%) + Edu (20%) + Exp (15%) + Interest (15%) + Loc (10%)</small>
+                    </div>
+
+                    <!-- SKILLS BREAKDOWN DEMO -->
+                    <div class="mb-3">
+                        <div class="small fw-bold text-dark mb-1">Matched Skills:</div>
+                        <span class="skill-tag skill-tag-matched"><i class="bi bi-check-lg"></i> Python</span>
+                        <span class="skill-tag skill-tag-matched"><i class="bi bi-check-lg"></i> FastAPI</span>
+                        <span class="skill-tag skill-tag-matched"><i class="bi bi-check-lg"></i> SQL</span>
+                        <span class="skill-tag skill-tag-matched"><i class="bi bi-check-lg"></i> REST API</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="small fw-bold text-dark mb-1">Missing Skills:</div>
+                        <span class="skill-tag skill-tag-missing"><i class="bi bi-x-lg"></i> Docker</span>
+                    </div>
+
+                    <div class="explanation-panel small">
+                        <strong><i class="bi bi-lightbulb text-warning me-1"></i> Why Recommended:</strong>
+                        "Your Python, API and SQL skills strongly match the requirements of this role."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS SECTION -->
+<section class="py-5 bg-white border-top border-bottom">
+    <div class="container py-4">
+        <div class="text-center max-w-700 mx-auto mb-5">
+            <h2 class="fw-bold mb-2">How CareerMatch AI Works</h2>
+            <p class="text-muted">Simple 3-step explainable workflow from profile creation to career guidance.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="cm-card text-center h-100 p-4">
+                    <div class="stat-icon mx-auto mb-3" style="width:60px; height:60px; font-size:1.6rem;">
+                        <span class="fw-bold">01</span>
+                    </div>
+                    <h5 class="fw-bold mb-2">Build Your Profile</h5>
+                    <p class="text-muted small">
+                        Enter your degree, experience, and skills with proficiencies or upload your PDF resume for instant NLP skill extraction.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="cm-card text-center h-100 p-4">
+                    <div class="stat-icon mx-auto mb-3" style="width:60px; height:60px; font-size:1.6rem; background:rgba(124,77,255,0.1); color:var(--secondary);">
+                        <span class="fw-bold">02</span>
+                    </div>
+                    <h5 class="fw-bold mb-2">AI Analyzes Your Skills</h5>
+                    <p class="text-muted small">
+                        Fuzzy logic evaluates your proficiency level against job criteria. 5-factor weighted scoring calculates overall compatibility.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="cm-card text-center h-100 p-4">
+                    <div class="stat-icon mx-auto mb-3" style="width:60px; height:60px; font-size:1.6rem; background:rgba(6,182,212,0.1); color:var(--accent);">
+                        <span class="fw-bold">03</span>
+                    </div>
+                    <h5 class="fw-bold mb-2">Discover Your Best Matches</h5>
+                    <p class="text-muted small">
+                        Explore ranked job recommendations with human-understandable explanations, skill gap reports, and customized learning paths.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CORE FEATURES SECTION -->
+<section class="py-5 bg-light">
+    <div class="container py-4">
+        <div class="text-center max-w-700 mx-auto mb-5">
+            <h2 class="fw-bold mb-2">Key System Features</h2>
+            <p class="text-muted">Designed for academic excellence, transparency, and practical career guidance.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="cm-card h-100">
+                    <i class="bi bi-sliders text-primary fs-2 mb-3"></i>
+                    <h5 class="fw-bold">Intelligent Job Matching</h5>
+                    <p class="text-muted small">
+                        Evaluates skills, degree, experience, interests, and location using an explainable 5-factor weighted algorithm.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="cm-card h-100">
+                    <i class="bi bi-chat-quote text-secondary fs-2 mb-3"></i>
+                    <h5 class="fw-bold">Explainable Recommendations</h5>
+                    <p class="text-muted small">
+                        No black-box predictions! Provides detailed natural language explanations and transparent score breakdowns for every match.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="cm-card h-100">
+                    <i class="bi bi-bar-chart-steps text-info fs-2 mb-3"></i>
+                    <h5 class="fw-bold">Skill Gap Analysis</h5>
+                    <p class="text-muted small">
+                        Identifies missing and partial skills for target roles and generates prioritized step-by-step learning paths.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="cm-card h-100">
+                    <i class="bi bi-compass-fill text-warning fs-2 mb-3"></i>
+                    <h5 class="fw-bold">AI Career Guidance</h5>
+                    <p class="text-muted small">
+                        Recommends primary and alternative career directions based on IF-THEN expert system rules.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DEMO SYSTEM STATISTICS SECTION -->
+<section class="py-5 bg-white border-top">
+    <div class="container py-3">
+        <div class="row g-4 text-center">
+            <div class="col-6 col-md-3">
+                <h2 class="fw-extrabold text-primary display-5 mb-1">100+</h2>
+                <div class="text-muted small fw-semibold">Sample Jobs Seeded</div>
+            </div>
+            <div class="col-6 col-md-3">
+                <h2 class="fw-extrabold text-secondary display-5 mb-1">500+</h2>
+                <div class="text-muted small fw-semibold">Skills Mapped in DB</div>
+            </div>
+            <div class="col-6 col-md-3">
+                <h2 class="fw-extrabold text-info display-5 mb-1">95%</h2>
+                <div class="text-muted small fw-semibold">Profile Analysis Coverage</div>
+            </div>
+            <div class="col-6 col-md-3">
+                <h2 class="fw-extrabold text-success display-5 mb-1">100%</h2>
+                <div class="text-muted small fw-semibold">Explainable Output</div>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <small class="text-muted italic">* Clearly marked system & sample dataset parameters for academic project demonstration.</small>
+        </div>
+    </div>
+</section>
+
+<!-- CALL TO ACTION -->
+<section class="py-5 text-white" style="background: linear-gradient(135deg, var(--dark), #1E293B);">
+    <div class="container text-center py-4">
+        <h2 class="fw-bold text-white mb-3">Ready to discover your next opportunity?</h2>
+        <p class="text-light-50 max-w-600 mx-auto mb-4">
+            Build your profile, upload your resume, and let our explainable AI match you with ideal job roles today.
+        </p>
+        <a href="{{ url_for('auth.register') }}" class="btn btn-primary-cm btn-lg px-5">
+            <i class="bi bi-rocket-takeoff me-2"></i> Get Started Now
+        </a>
+    </div>
+</section>
+{% endblock %}

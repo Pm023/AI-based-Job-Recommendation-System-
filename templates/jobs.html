@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block title %}Recommended Jobs For You - CareerMatch AI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- PAGE HEADER -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+        <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <h2 class="fw-bold mb-0"><i class="bi bi-stars text-primary me-2"></i> Recommended Jobs For You</h2>
+                <span class="badge bg-primary-subtle text-primary fw-semibold px-2 py-1 rounded-pill small">AI Ranked</span>
+            </div>
+            <p class="text-muted mb-0">Jobs ranked by transparent compatibility score from your skills, experience, and interests.</p>
+        </div>
+        <div class="badge bg-white text-dark border shadow-sm fs-6 px-3 py-2 rounded-pill">
+            <i class="bi bi-briefcase-fill text-primary me-1"></i> {{ total_count }} Matching Opportunities
+        </div>
+    </div>
+
+    <!-- FILTERS AND SEARCH BAR -->
+    <div class="cm-card mb-4 bg-white p-3 shadow-sm border-0">
+        <form method="GET" action="{{ url_for('jobs.recommended_jobs') }}" class="row g-2 align-items-center">
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
+                    <input type="text" name="q" class="form-control border-start-0 bg-light" placeholder="Search title, skills..." value="{{ search_query }}">
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <select name="role" class="form-select bg-light">
+                    <option value="">All Job Roles</option>
+                    {% for r in roles %}
+                        <option value="{{ r }}" {% if role_filter == r.lower() %}selected{% endif %}>{{ r }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <select name="location" class="form-select bg-light">
+                    <option value="">All Locations</option>
+                    {% for loc in locations %}
+                        <option value="{{ loc }}" {% if location_filter == loc.lower() %}selected{% endif %}>{{ loc }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <select name="min_score" class="form-select bg-light">
+                    <option value="0" {% if min_score == 0 %}selected{% endif %}>Min Match: Any</option>
+                    <option value="80" {% if min_score == 80 %}selected{% endif %}>80%+ Excellent</option>
+                    <option value="70" {% if min_score == 70 %}selected{% endif %}>70%+ Good</option>
+                    <option value="50" {% if min_score == 50 %}selected{% endif %}>50%+ Moderate</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <select name="sort" class="form-select bg-light">
+                    <option value="best" {% if sort_by == 'best' %}selected{% endif %}>Sort: Best Match</option>
+                    <option value="newest" {% if sort_by == 'newest' %}selected{% endif %}>Sort: Newest</option>
+                    <option value="location" {% if sort_by == 'location' %}selected{% endif %}>Sort: Location</option>
+                </select>
+            </div>
+
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-primary-cm w-100 justify-content-center">Filter</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- JOB RECOMMENDATION CARDS -->
+    {% if recommendations %}
+        <div class="row g-4">
+            {% for item in recommendations %}
+                {% set job = item.job %}
+                {% set score = item.overall_score_int %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="cm-card job-card h-100 d-flex flex-column p-4 bg-white">
+                        <div class="d-flex align-items-start justify-content-between mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="company-avatar">
+                                    {{ job.company[:2].upper() }}
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold mb-0 text-dark" style="font-size:1.05rem;">{{ job.title }}</h5>
+                                    <span class="text-muted small fw-medium">{{ job.company }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- MATCH SCORE BADGE & PROGRESS BAR -->
+                        <div class="p-2 bg-light rounded-3 mb-3 border">
+                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                <small class="text-muted fw-bold">COMPATIBILITY SCORE</small>
+                                {% if score >= 85 %}
+                                    <span class="match-badge match-badge-excellent py-0 px-2 fs-7"><i class="bi bi-stars"></i> {{ score }}% MATCH</span>
+                                {% elif score >= 70 %}
+                                    <span class="match-badge match-badge-good py-0 px-2 fs-7"><i class="bi bi-check-circle-fill"></i> {{ score }}% MATCH</span>
+                                {% elif score >= 50 %}
+                                    <span class="match-badge match-badge-moderate py-0 px-2 fs-7"><i class="bi bi-exclamation-triangle-fill"></i> {{ score }}% MATCH</span>
+                                {% else %}
+                                    <span class="match-badge match-badge-low py-0 px-2 fs-7"><i class="bi bi-x-circle-fill"></i> {{ score }}% MATCH</span>
+                                {% endif %}
+                            </div>
+                            <div class="progress progress-cm" style="height:6px;">
+                                <div class="progress-bar progress-cm-bar" style="width: {{ score }}%"></div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap gap-2 text-muted small mb-3">
+                            <span class="badge bg-light text-dark border"><i class="bi bi-geo-alt text-danger me-1"></i> {{ job.location }}</span>
+                            <span class="badge bg-light text-dark border"><i class="bi bi-briefcase text-primary me-1"></i> {{ job.experience }}</span>
+                            {% if job.salary %}
+                                <span class="badge bg-light text-dark border"><i class="bi bi-cash-stack text-success me-1"></i> {{ job.salary }}</span>
+                            {% endif %}
+                        </div>
+
+                        <!-- MATCHED AND MISSING SKILLS PREVIEW -->
+                        <div class="mb-3">
+                            <div class="small text-muted fw-bold mb-1">Matched Skills:</div>
+                            <div class="mb-2">
+                                {% for sk in item.matched_skills[:3] %}
+                                    <span class="skill-tag skill-tag-matched"><i class="bi bi-check-lg"></i> {{ sk.name }}</span>
+                                {% endfor %}
+                                {% if item.matched_skills|length > 3 %}
+                                    <span class="small text-muted">+{{ item.matched_skills|length - 3 }} more</span>
+                                {% endif %}
+                            </div>
+
+                            {% if item.missing_skills %}
+                                <div class="small text-muted fw-bold mb-1">Missing Skills:</div>
+                                <div>
+                                    {% for sk in item.missing_skills[:2] %}
+                                        <span class="skill-tag skill-tag-missing"><i class="bi bi-x-lg"></i> {{ sk.name }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mt-auto pt-3 border-top d-flex align-items-center justify-content-between">
+                            <small class="text-muted fw-semibold"><i class="bi bi-tag me-1"></i> {{ job.job_type }}</small>
+                            <a href="{{ url_for('jobs.job_details', job_id=job.id) }}" class="btn btn-outline-cm btn-sm">
+                                View Match Details <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <!-- EMPTY STATE -->
+        <div class="cm-card text-center p-5 bg-white border-0 shadow-sm">
+            <i class="bi bi-search text-muted display-3 mb-3"></i>
+            <h4 class="fw-bold mb-2">No jobs currently match your selected filters.</h4>
+            <p class="text-muted small mb-4">Try clearing filters or updating your skill profile.</p>
+            <a href="{{ url_for('jobs.recommended_jobs') }}" class="btn btn-outline-cm">Reset Filters</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

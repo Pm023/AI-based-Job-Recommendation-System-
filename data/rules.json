@@ -1,0 +1,61 @@
+[
+  {
+    "id": 1,
+    "name": "Backend Developer Rule",
+    "role": "Backend Developer",
+    "condition": {
+      "Python": "Intermediate",
+      "SQL": "Intermediate",
+      "REST API": "Basic"
+    },
+    "conclusion": "High Backend Suitability",
+    "description": "User possesses core backend development skills (Python, SQL, REST APIs)."
+  },
+  {
+    "id": 2,
+    "name": "Data Analyst Rule",
+    "role": "Data Analyst",
+    "condition": {
+      "Python": "Intermediate",
+      "SQL": "Intermediate",
+      "Pandas": "Intermediate"
+    },
+    "conclusion": "High Data Analysis Suitability",
+    "description": "User has data processing and querying skills (Python, SQL, Pandas)."
+  },
+  {
+    "id": 3,
+    "name": "AI/ML Engineer Rule",
+    "role": "AI Engineer",
+    "condition": {
+      "Python": "Intermediate",
+      "Machine Learning": "Intermediate",
+      "NLP": "Basic"
+    },
+    "conclusion": "High AI Engineering Suitability",
+    "description": "User has foundational machine learning and natural language processing capabilities."
+  },
+  {
+    "id": 4,
+    "name": "Full Stack Developer Rule",
+    "role": "Full Stack Developer",
+    "condition": {
+      "JavaScript": "Intermediate",
+      "HTML": "Intermediate",
+      "Python": "Intermediate"
+    },
+    "conclusion": "High Full Stack Suitability",
+    "description": "User combines frontend (HTML/JS) and backend (Python) skillsets."
+  },
+  {
+    "id": 5,
+    "name": "DevOps / Cloud Rule",
+    "role": "DevOps Engineer",
+    "condition": {
+      "Docker": "Intermediate",
+      "Linux": "Intermediate"
+    },
+    "conclusion": "High Cloud/DevOps Suitability",
+    "description": "User has core containerization and OS administration proficiency."
+  }
+]

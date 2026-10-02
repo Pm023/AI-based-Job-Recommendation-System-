@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}AI Career Guidance - CareerMatch AI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- HEADER -->
+    <div class="mb-4">
+        <h2 class="fw-bold mb-1"><i class="bi bi-compass text-primary me-2"></i> AI Career Guidance</h2>
+        <p class="text-muted mb-0">Personalized career trajectory insights based on your profile and expert system rules.</p>
+    </div>
+
+    <div class="row g-4">
+        <!-- PRIMARY CAREER DIRECTION -->
+        <div class="col-lg-7">
+            <div class="cm-card mb-4 bg-white p-4">
+                <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-1 mb-2">PRIMARY CAREER DIRECTION</span>
+                <h3 class="fw-bold text-dark mb-2">{{ guidance.primary_role }}</h3>
+                <p class="text-muted mb-4">{{ guidance.primary_description }}</p>
+
+                <div class="p-3 bg-light rounded-3 border mb-4">
+                    <strong class="text-dark d-block mb-1"><i class="bi bi-chat-left-quote text-primary me-2"></i> AI Recommendation Rationale:</strong>
+                    <p class="small text-secondary mb-0">"{{ guidance.reason }}"</p>
+                </div>
+
+                <h6 class="fw-bold mb-3 text-dark">Alternative Career Pathways:</h6>
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    {% for alt in guidance.alternative_roles %}
+                        <span class="badge bg-light text-dark border p-2 fs-6"><i class="bi bi-diagram-3 me-1 text-primary"></i> {{ alt }}</span>
+                    {% endfor %}
+                </div>
+
+                <h6 class="fw-bold mb-3 text-dark">Recommended Next Skills to Master:</h6>
+                <div class="row g-3">
+                    {% for nsk in guidance.recommended_next_skills %}
+                        <div class="col-md-6">
+                            <div class="card p-3 border shadow-sm h-100">
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="stat-icon bg-primary-subtle text-primary" style="width:36px; height:36px; font-size:1rem;">
+                                        {{ loop.index }}
+                                    </div>
+                                    <strong class="text-dark">{{ nsk }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- EXPERT SYSTEM RULES BREAKDOWN -->
+        <div class="col-lg-5">
+            <div class="cm-card mb-4 bg-white p-4">
+                <h5 class="fw-bold mb-3 text-primary"><i class="bi bi-cpu me-2"></i> Expert System Rule Evaluation</h5>
+                <p class="text-muted small mb-3">IF-THEN rule inferences triggered by your current skill inventory:</p>
+
+                {% if guidance.suitability_rules %}
+                    {% for r in guidance.suitability_rules %}
+                        <div class="p-3 bg-light rounded-3 border mb-3">
+                            <div class="badge bg-success mb-1">{{ r.conclusion }}</div>
+                            <div class="fw-bold small text-dark mb-1">{{ r.rule_name }}</div>
+                            <small class="text-muted d-block">{{ r.reason }}</small>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-muted small">No specific high-suitability domain rules triggered yet. Add more technical skills in profile setup.</p>
+                {% endif %}
+
+                <div class="mt-4 pt-3 border-top text-center">
+                    <a href="{{ url_for('jobs.recommended_jobs') }}" class="btn btn-primary-cm btn-sm w-100">
+                        View Matching Job Openings <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

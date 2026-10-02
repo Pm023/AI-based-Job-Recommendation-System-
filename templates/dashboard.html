@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - CareerMatch AI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- WELCOME BANNER -->
+    <div class="cm-card mb-4 bg-white p-4 shadow-sm position-relative overflow-hidden">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-1 rounded-pill">
+                        <span class="pulse-indicator me-1"></span> AI Matching Active
+                    </span>
+                    <span class="text-muted small">Updated live</span>
+                </div>
+                <h2 class="fw-bold mb-1">Good day, {{ user.name }}! 👋</h2>
+                <p class="text-muted mb-3">
+                    Your student skill profile is actively analyzed against available job requirements using our explainable AI engine.
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="{{ url_for('jobs.recommended_jobs') }}" class="btn btn-primary-cm">
+                        <i class="bi bi-stars"></i> View Recommendations
+                    </a>
+                    <a href="{{ url_for('recommendations.skill_gap') }}" class="btn btn-outline-cm">
+                        <i class="bi bi-bar-chart"></i> View Skill Gap
+                    </a>
+                    <a href="{{ url_for('user.profile_setup') }}" class="btn btn-light border">
+                        <i class="bi bi-pencil-square"></i> Update Profile
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 mt-3 mt-md-0 text-md-end">
+                <div class="d-inline-flex gap-3">
+                    <div class="text-center p-3 bg-light rounded-3 border shadow-sm" style="min-width:115px;">
+                        <div class="h3 fw-extrabold text-primary mb-0">{{ completion_pct }}%</div>
+                        <small class="text-muted fw-bold">Profile Setup</small>
+                    </div>
+                    <div class="text-center p-3 bg-light rounded-3 border shadow-sm" style="min-width:115px;">
+                        <div class="h3 fw-extrabold text-success mb-0">{{ avg_match }}%</div>
+                        <small class="text-muted fw-bold">Avg Job Match</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- LEFT COLUMN: TOP RECOMMENDED JOBS -->
+        <div class="col-lg-8">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <h4 class="fw-bold mb-0"><i class="bi bi-fire text-danger me-2"></i> Top Recommended Jobs</h4>
+                <a href="{{ url_for('jobs.recommended_jobs') }}" class="text-primary fw-semibold small text-decoration-none">
+                    View All Opportunities <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            {% if top_jobs %}
+                <div class="row g-3">
+                    {% for item in top_jobs %}
+                        {% set job = item.job %}
+                        {% set score = item.overall_score_int %}
+                        <div class="col-12">
+                            <div class="cm-card job-card p-3 shadow-sm bg-white">
+                                <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+                                    <!-- LEFT: COMPANY AVATAR, TITLE & SKILLS -->
+                                    <div class="d-flex align-items-start gap-3">
+                                        <div class="company-avatar">
+                                            {{ job.company[:2].upper() }}
+                                        </div>
+                                        <div>
+                                            <h5 class="fw-bold mb-1 text-dark" style="font-size:1.05rem;">{{ job.title }}</h5>
+                                            <div class="text-muted small mb-2">
+                                                <span class="fw-semibold text-dark">{{ job.company }}</span> · 
+                                                <span><i class="bi bi-geo-alt text-danger me-1"></i> {{ job.location }}</span> · 
+                                                <span><i class="bi bi-briefcase text-primary me-1"></i> {{ job.experience }}</span>
+                                            </div>
+                                            <div>
+                                                {% for sk in item.matched_skills[:3] %}
+                                                    <span class="skill-tag skill-tag-matched"><i class="bi bi-check-lg"></i> {{ sk.name }}</span>
+                                                {% endfor %}
+                                                {% for sk in item.missing_skills[:2] %}
+                                                    <span class="skill-tag skill-tag-missing"><i class="bi bi-x-lg"></i> {{ sk.name }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- RIGHT: MATCH BADGE & ACTION BUTTON -->
+                                    <div class="text-start text-md-end flex-shrink-0">
+                                        <div class="mb-2">
+                                            {% if score >= 85 %}
+                                                <span class="match-badge match-badge-excellent"><i class="bi bi-stars"></i> {{ score }}% MATCH</span>
+                                            {% elif score >= 70 %}
+                                                <span class="match-badge match-badge-good"><i class="bi bi-check-circle-fill"></i> {{ score }}% MATCH</span>
+                                            {% elif score >= 50 %}
+                                                <span class="match-badge match-badge-moderate"><i class="bi bi-exclamation-triangle-fill"></i> {{ score }}% MATCH</span>
+                                            {% else %}
+                                                <span class="match-badge match-badge-low"><i class="bi bi-x-circle-fill"></i> {{ score }}% MATCH</span>
+                                            {% endif %}
+                                        </div>
+                                        <a href="{{ url_for('jobs.job_details', job_id=job.id) }}" class="btn btn-outline-cm btn-sm">
+                                            Match Breakdown <i class="bi bi-arrow-right ms-1"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="cm-card text-center p-5 bg-white">
+                    <i class="bi bi-inbox text-muted display-4 mb-3"></i>
+                    <h5 class="fw-bold mb-2">No recommendations yet.</h5>
+                    <p class="text-muted small mb-3">Complete your profile to receive personalized job recommendations.</p>
+                    <a href="{{ url_for('user.profile_setup') }}" class="btn btn-primary-cm">Complete Profile</a>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- RIGHT COLUMN: SIDEBAR OVERVIEWS -->
+        <div class="col-lg-4">
+            <!-- SKILL OVERVIEW -->
+            <div class="cm-card mb-4 bg-white">
+                <h5 class="fw-bold mb-3"><i class="bi bi-bar-chart-fill text-primary me-2"></i> Skill Proficiency</h5>
+                {% if skills_overview %}
+                    {% for sk in skills_overview %}
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between small fw-semibold mb-1">
+                                <span class="text-dark">{{ sk.name }}</span>
+                                <span class="text-muted">{{ sk.proficiency }} ({{ sk.percentage }}%)</span>
+                            </div>
+                            <div class="progress progress-cm">
+                                <div class="progress-bar progress-cm-bar" style="width: {{ sk.percentage }}%"></div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-muted small">No skills added yet.</p>
+                    <a href="{{ url_for('user.profile_setup') }}" class="btn btn-outline-cm btn-sm w-100">Add Skills</a>
+                {% endif %}
+            </div>
+
+            <!-- SKILL GAP PREVIEW -->
+            <div class="cm-card mb-4 bg-white">
+                <h5 class="fw-bold mb-3"><i class="bi bi-exclamation-circle text-warning me-2"></i> Priority Skill Gaps</h5>
+                <p class="text-muted small mb-3">Priority skills to acquire for your top target positions:</p>
+                {% if skill_gap_preview %}
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        {% for sg in skill_gap_preview %}
+                            <span class="skill-tag skill-tag-missing py-1 px-2">
+                                <i class="bi bi-x-circle me-1"></i> {{ sg.name }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted small">Your profile aligns well with available roles!</p>
+                {% endif %}
+                <a href="{{ url_for('recommendations.skill_gap') }}" class="btn btn-light border btn-sm w-100 fw-semibold">
+                    Full Skill Gap Report <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+
+            <!-- CAREER DIRECTION -->
+            <div class="cm-card bg-white">
+                <h5 class="fw-bold mb-2"><i class="bi bi-compass text-info me-2"></i> Career Direction</h5>
+                <div class="p-3 bg-light rounded-3 border mb-3">
+                    <div class="small text-muted fw-bold uppercase mb-1">PRIMARY PATH</div>
+                    <div class="fw-bold text-primary fs-5">{{ career_guidance.primary_role }}</div>
+                    <small class="text-muted d-block mt-1">{{ career_guidance.reason }}</small>
+                </div>
+                <a href="{{ url_for('recommendations.career_guidance') }}" class="btn btn-outline-cm btn-sm w-100">
+                    Explore Career Guidance
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

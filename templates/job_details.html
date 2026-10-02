@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ job.title }} - Match Details | CareerMatch AI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- BREADCRUMB -->
+    <nav class="mb-3">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a href="{{ url_for('user.dashboard') }}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('jobs.recommended_jobs') }}">Recommended Jobs</a></li>
+            <li class="breadcrumb-item active">{{ job.title }}</li>
+        </ol>
+    </nav>
+
+    <div class="row g-4">
+        <!-- LEFT COLUMN: JOB OVERVIEW & SKILL COMPARISON TABLE -->
+        <div class="col-lg-8">
+            <div class="cm-card mb-4 bg-white p-4">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                        <span class="badge bg-primary-subtle text-primary mb-2 fw-semibold">{{ job.job_type }}</span>
+                        <h2 class="fw-bold text-dark mb-1">{{ job.title }}</h2>
+                        <div class="h5 text-primary fw-semibold mb-2"><i class="bi bi-building me-1"></i> {{ job.company }}</div>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-wrap gap-3 text-muted small p-3 bg-light rounded-3 mb-4">
+                    <div><i class="bi bi-geo-alt-fill text-danger me-1"></i> <strong>Location:</strong> {{ job.location }}</div>
+                    <div><i class="bi bi-briefcase-fill text-primary me-1"></i> <strong>Experience:</strong> {{ job.experience }}</div>
+                    {% if job.salary %}
+                        <div><i class="bi bi-cash-stack text-success me-1"></i> <strong>Salary:</strong> {{ job.salary }}</div>
+                    {% endif %}
+                </div>
+
+                <h5 class="fw-bold mb-2">Job Description</h5>
+                <p class="text-secondary mb-4" style="white-space: pre-line;">{{ job.description }}</p>
+
+                <!-- SKILL BY SKILL COMPARISON TABLE -->
+                <h5 class="fw-bold mb-3"><i class="bi bi-table text-primary me-2"></i> Skill-by-Skill Proficiency Comparison</h5>
+                <div class="table-responsive mb-4">
+                    <table class="table table-hover align-middle border">
+                        <thead class="table-light small text-uppercase">
+                            <tr>
+                                <th>Skill</th>
+                                <th>Your Proficiency</th>
+                                <th>Job Requirement</th>
+                                <th>Weight</th>
+                                <th>Fuzzy Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for sc in skill_comparisons %}
+                                <tr>
+                                    <td class="fw-bold">{{ sc.skill_name }}</td>
+                                    <td>
+                                        {% if sc.user_proficiency == 'Not Added' %}
+                                            <span class="text-danger small"><i class="bi bi-dash-circle me-1"></i> Not Added</span>
+                                        {% else %}
+                                            <span class="badge bg-light text-dark border">{{ sc.user_proficiency }}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td><span class="badge bg-light text-dark border">{{ sc.required_proficiency }}</span></td>
+                                    <td><span class="small text-muted">{{ sc.weight }}%</span></td>
+                                    <td><span class="{{ sc.status_class }}">{{ sc.status }}</span></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- APPLY PLACEHOLDER -->
+                <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+                    <a href="{{ url_for('jobs.recommended_jobs') }}" class="btn btn-outline-cm">
+                        <i class="bi bi-arrow-left"></i> Back to Recommendations
+                    </a>
+                    {% if job.application_url %}
+                        <a href="{{ job.application_url }}" target="_blank" class="btn btn-primary-cm btn-lg px-4">
+                            Apply via Company Portal <i class="bi bi-box-arrow-up-right ms-2"></i>
+                        </a>
+                    {% else %}
+                        <button class="btn btn-primary-cm btn-lg px-4" onclick="alert('Demo application submitted for {{ job.title }}!')">
+                            Apply Now <i class="bi bi-send me-1"></i>
+                        </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN: AI MATCH EXPLANATION PANEL -->
+        <div class="col-lg-4">
+            <!-- OVERALL SCORE CARD -->
+            <div class="cm-card mb-4 text-center p-4">
+                <h5 class="fw-bold mb-3 text-muted">OVERALL COMPATIBILITY</h5>
+                
+                <div class="match-circle mb-3" style="--score-pct: {{ overall_score }};">
+                    <div class="match-circle-inner">
+                        <span>{{ overall_score }}%</span>
+                        <small>MATCH</small>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    {% if overall_score >= 85 %}
+                        <span class="match-badge match-badge-excellent fs-6"><i class="bi bi-stars"></i> Excellent Match</span>
+                    {% elif overall_score >= 70 %}
+                        <span class="match-badge match-badge-good fs-6"><i class="bi bi-check-circle-fill"></i> Good Compatibility</span>
+                    {% elif overall_score >= 50 %}
+                        <span class="match-badge match-badge-moderate fs-6"><i class="bi bi-exclamation-triangle-fill"></i> Moderate Alignment</span>
+                    {% else %}
+                        <span class="match-badge match-badge-low fs-6"><i class="bi bi-x-circle-fill"></i> Low Alignment</span>
+                    {% endif %}
+                </div>
+
+                <!-- SCORE BREAKDOWN TABLE -->
+                <div class="text-start bg-light p-3 rounded-3 border small">
+                    <div class="fw-bold mb-3 text-dark"><i class="bi bi-pie-chart-fill text-primary me-1"></i> 5-Factor Formula Breakdown:</div>
+                    
+                    <div class="mb-2">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="fw-semibold">Skill Match (40%):</span>
+                            <strong class="text-primary">{{ sub_scores.skill_score }}%</strong>
+                        </div>
+                        <div class="progress progress-cm" style="height:5px;">
+                            <div class="progress-bar progress-cm-bar" style="width: {{ sub_scores.skill_score }}%"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="fw-semibold">Education Match (20%):</span>
+                            <strong class="text-primary">{{ sub_scores.education_score }}%</strong>
+                        </div>
+                        <div class="progress progress-cm" style="height:5px;">
+                            <div class="progress-bar progress-cm-bar" style="width: {{ sub_scores.education_score }}%"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="fw-semibold">Experience Match (15%):</span>
+                            <strong class="text-primary">{{ sub_scores.experience_score }}%</strong>
+                        </div>
+                        <div class="progress progress-cm" style="height:5px;">
+                            <div class="progress-bar progress-cm-bar" style="width: {{ sub_scores.experience_score }}%"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="fw-semibold">Interest Match (15%):</span>
+                            <strong class="text-primary">{{ sub_scores.interest_score }}%</strong>
+                        </div>
+                        <div class="progress progress-cm" style="height:5px;">
+                            <div class="progress-bar progress-cm-bar" style="width: {{ sub_scores.interest_score }}%"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="fw-semibold">Location Match (10%):</span>
+                            <strong class="text-primary">{{ sub_scores.location_score }}%</strong>
+                        </div>
+                        <div class="progress progress-cm" style="height:5px;">
+                            <div class="progress-bar progress-cm-bar" style="width: {{ sub_scores.location_score }}%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXPLAINABLE AI REASONING CARD -->
+            <div class="cm-card mb-4">
+                <h5 class="fw-bold mb-3"><i class="bi bi-lightbulb-fill text-warning me-2"></i> Why This Match?</h5>
+                
+                <div class="explanation-panel mb-3">
+                    <p class="small text-dark mb-0 fw-medium">
+                        "{{ explanation }}"
+                    </p>
+                </div>
+
+                <div class="mb-3">
+                    <div class="small fw-bold text-dark mb-1">Matched Skills:</div>
+                    {% for sk in matched_skills %}
+                        <span class="skill-tag skill-tag-matched"><i class="bi bi-check-lg"></i> {{ sk.name }}</span>
+                    {% endfor %}
+                </div>
+
+                {% if missing_skills or partial_skills %}
+                    <div class="mb-3">
+                        <div class="small fw-bold text-dark mb-1">Skill Gaps:</div>
+                        {% for sk in partial_skills %}
+                            <span class="skill-tag skill-tag-partial"><i class="bi bi-circle-half"></i> {{ sk.name }}</span>
+                        {% endfor %}
+                        {% for sk in missing_skills %}
+                            <span class="skill-tag skill-tag-missing"><i class="bi bi-x-lg"></i> {{ sk.name }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <div class="p-3 bg-light-subtle border rounded-3 small">
+                    <strong class="text-primary d-block mb-1"><i class="bi bi-arrow-up-right-circle me-1"></i> Improvement Suggestion:</strong>
+                    <span class="text-muted">{{ improvement_suggestion }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

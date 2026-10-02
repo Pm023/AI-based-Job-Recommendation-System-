@@ -1,0 +1,516 @@
+[
+  {
+    "id": 1,
+    "title": "Python Backend Developer",
+    "company": "TechNova Solutions",
+    "location": "Ahmedabad",
+    "experience": "0-2 Years",
+    "salary": "₹4.5 - ₹6.5 LPA",
+    "job_type": "Full-time",
+    "description": "We are seeking a motivated Python Backend Developer to design scalable web services, build robust RESTful APIs using FastAPI and Flask, and write clean SQL queries.",
+    "application_url": "https://technova.example.com/careers/py-backend",
+    "skills": [
+      {"name": "Python", "required_proficiency": "Intermediate", "weight": 30},
+      {"name": "FastAPI", "required_proficiency": "Intermediate", "weight": 25},
+      {"name": "SQL", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "Git", "required_proficiency": "Basic", "weight": 15},
+      {"name": "Docker", "required_proficiency": "Beginner", "weight": 10}
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Data Analyst",
+    "company": "DataBridge Technologies",
+    "location": "Bangalore",
+    "experience": "0-1 Years",
+    "salary": "₹4.0 - ₹5.5 LPA",
+    "job_type": "Full-time",
+    "description": "Join our data insights team! Work with Python, SQL, Pandas, and visualization tools like Power BI to translate business data into actionable dashboard insights.",
+    "application_url": "https://databridge.example.com/careers/data-analyst",
+    "skills": [
+      {"name": "Python", "required_proficiency": "Intermediate", "weight": 25},
+      {"name": "SQL", "required_proficiency": "Intermediate", "weight": 30},
+      {"name": "Pandas", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "Statistics", "required_proficiency": "Basic", "weight": 15},
+      {"name": "Excel", "required_proficiency": "Intermediate", "weight": 10}
+    ]
+  },
+  {
+    "id": 3,
+    "title": "AI Engineer Intern",
+    "company": "CodeSphere Labs",
+    "location": "Remote",
+    "experience": "Fresher",
+    "salary": "₹25,000 / month Stipend",
+    "job_type": "Internship",
+    "description": "Awesome entry-level opportunity for AI enthusiasts! Build intelligent prototypes using NLP, PyTorch, scikit-learn, and state-of-the-art Python AI libraries.",
+    "application_url": "https://codesphere.example.com/internships/ai-engineer",
+    "skills": [
+      {"name": "Python", "required_proficiency": "Advanced", "weight": 30},
+      {"name": "Machine Learning", "required_proficiency": "Intermediate", "weight": 25},
+      {"name": "NLP", "required_proficiency": "Intermediate", "weight": 25},
+      {"name": "PyTorch", "required_proficiency": "Basic", "weight": 20}
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Full Stack Developer",
+    "company": "BrightStack Technologies",
+    "location": "Surat",
+    "experience": "1-3 Years",
+    "salary": "₹5.0 - ₹7.5 LPA",
+    "job_type": "Full-time",
+    "description": "Looking for a versatile Full Stack Developer comfortable with modern frontend interfaces (HTML/CSS/JS/React) and Python backend microservices.",
+    "application_url": "https://brightstack.example.com/jobs/fullstack",
+    "skills": [
+      {"name": "JavaScript", "required_proficiency": "Intermediate", "weight": 25},
+      {"name": "HTML", "required_proficiency": "Advanced", "weight": 15},
+      {"name": "CSS", "required_proficiency": "Intermediate", "weight": 15},
+      {"name": "React", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "Python", "required_proficiency": "Intermediate", "weight": 15},
+      {"name": "SQL", "required_proficiency": "Basic", "weight": 10}
+    ]
+  },
+  {
+    "id": 5,
+    "title": "API Developer",
+    "company": "CloudNest Systems",
+    "location": "Pune",
+    "experience": "0-2 Years",
+    "salary": "₹4.2 - ₹6.0 LPA",
+    "job_type": "Full-time",
+    "description": "Design and maintain high-performance microservice REST APIs using FastAPI, Flask, PostgreSQL databases, and Git version control workflows.",
+    "application_url": "https://cloudnest.example.com/careers/api-dev",
+    "skills": [
+      {"name": "Python", "required_proficiency": "Intermediate", "weight": 30},
+      {"name": "REST API", "required_proficiency": "Intermediate", "weight": 30},
+      {"name": "FastAPI", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "SQL", "required_proficiency": "Basic", "weight": 10},
+      {"name": "Git", "required_proficiency": "Basic", "weight": 10}
+    ]
+  },
+  {
+    "id": 6,
+    "title": "ML Engineer",
+    "company": "InnoByte AI Solutions",
+    "location": "Bangalore",
+    "experience": "1-3 Years",
+    "salary": "₹7.0 - ₹10.0 LPA",
+    "job_type": "Full-time",
+    "description": "Develop predictive ML models, perform feature engineering, and deploy models into production services using Python, scikit-learn, and Docker.",
+    "application_url": "https://innobyte.example.com/jobs/ml-engineer",
+    "skills": [
+      {"name": "Python", "required_proficiency": "Advanced", "weight": 30},
+      {"name": "Machine Learning", "required_proficiency": "Advanced", "weight": 30},
+      {"name": "NumPy", "required_proficiency": "Intermediate", "weight": 15},
+      {"name": "Pandas", "required_proficiency": "Intermediate", "weight": 15},
+      {"name": "Docker", "required_proficiency": "Basic", "weight": 10}
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Python Intern",
+    "company": "DevCore Labs",
+    "location": "Ahmedabad",
+    "experience": "Fresher",
+    "salary": "₹15,000 / month Stipend",
+    "job_type": "Internship",
+    "description": "Great starting point for computer engineering freshers. Learn Python scripting, standard data structures, web scraping, and database management.",
+    "application_url": "https://devcore.example.com/internships/python",
+    "skills": [
+      {"name": "Python", "required_proficiency": "Intermediate", "weight": 45},
+      {"name": "SQL", "required_proficiency": "Basic", "weight": 25},
+      {"name": "Data Structures", "required_proficiency": "Basic", "weight": 30}
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Cloud Intern",
+    "company": "CloudNest Systems",
+    "location": "Remote",
+    "experience": "Fresher",
+    "salary": "₹18,000 / month Stipend",
+    "job_type": "Internship",
+    "description": "Assist our DevOps engineers in managing cloud infrastructure on AWS/Azure, writing Linux shell scripts, and configuring Docker containers.",
+    "application_url": "https://cloudnest.example.com/internships/cloud",
+    "skills": [
+      {"name": "AWS", "required_proficiency": "Basic", "weight": 35},
+      {"name": "Linux", "required_proficiency": "Intermediate", "weight": 35},
+      {"name": "Docker", "required_proficiency": "Basic", "weight": 30}
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Software Developer - C++",
+    "company": "NextGen Software",
+    "location": "Vadodara",
+    "experience": "0-2 Years",
+    "salary": "₹4.8 - ₹6.8 LPA",
+    "job_type": "Full-time",
+    "description": "Develop high-performance systems applications using modern C++, algorithms, data structures, and object-oriented architecture.",
+    "application_url": "https://nextgen.example.com/careers/cpp-dev",
+    "skills": [
+      {"name": "C++", "required_proficiency": "Advanced", "weight": 50},
+      {"name": "Data Structures", "required_proficiency": "Advanced", "weight": 35},
+      {"name": "Git", "required_proficiency": "Basic", "weight": 15}
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Data Science Intern",
+    "company": "DataBridge Technologies",
+    "location": "Mumbai",
+    "experience": "Fresher",
+    "salary": "₹20,000 / month Stipend",
+    "job_type": "Internship",
+    "description": "Extract insights from raw datasets using Python, Pandas, NumPy, statistical hypothesis testing, and interactive visualization notebooks.",
+    "application_url": "https://databridge.example.com/internships/ds",
+    "skills": [
+      {"name": "Python", "required_proficiency": "Intermediate", "weight": 30},
+      {"name": "Pandas", "required_proficiency": "Intermediate", "weight": 30},
+      {"name": "NumPy", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "Statistics", "required_proficiency": "Intermediate", "weight": 20}
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Django Backend Engineer",
+    "company": "TechNova Solutions",
+    "location": "Ahmedabad",
+    "experience": "1-3 Years",
+    "salary": "₹5.5 - ₹8.0 LPA",
+    "job_type": "Full-time",
+    "description": "Build high-throughput web portals using Python Django, PostgreSQL relational databases, Redis caching, and Git collaboration workflows.",
+    "application_url": "https://technova.example.com/careers/django-eng",
+    "skills": [
+      {"name": "Python", "required_proficiency": "Advanced", "weight": 30},
+      {"name": "Django", "required_proficiency": "Intermediate", "weight": 30},
+      {"name": "PostgreSQL", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "Redis", "required_proficiency": "Basic", "weight": 10},
+      {"name": "Git", "required_proficiency": "Basic", "weight": 10}
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Frontend Developer (React)",
+    "company": "BrightStack Technologies",
+    "location": "Rajkot",
+    "experience": "0-2 Years",
+    "salary": "₹4.0 - ₹6.0 LPA",
+    "job_type": "Full-time",
+    "description": "Create intuitive single-page web applications with React.js, JavaScript (ES6+), HTML5, CSS3 grid layouts, and REST API integrations.",
+    "application_url": "https://brightstack.example.com/jobs/react-dev",
+    "skills": [
+      {"name": "React", "required_proficiency": "Intermediate", "weight": 35},
+      {"name": "JavaScript", "required_proficiency": "Intermediate", "weight": 25},
+      {"name": "HTML", "required_proficiency": "Advanced", "weight": 15},
+      {"name": "CSS", "required_proficiency": "Intermediate", "weight": 15},
+      {"name": "REST API", "required_proficiency": "Basic", "weight": 10}
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Web Developer",
+    "company": "CodeSphere Labs",
+    "location": "Ahmedabad",
+    "experience": "0-1 Years",
+    "salary": "₹3.5 - ₹5.0 LPA",
+    "job_type": "Full-time",
+    "description": "Build responsive websites for client projects using HTML5, CSS3, JavaScript, Bootstrap 5, and basic backend integration.",
+    "application_url": "https://codesphere.example.com/careers/web-dev",
+    "skills": [
+      {"name": "HTML", "required_proficiency": "Advanced", "weight": 30},
+      {"name": "CSS", "required_proficiency": "Advanced", "weight": 30},
+      {"name": "JavaScript", "required_proficiency": "Intermediate", "weight": 25},
+      {"name": "Bootstrap", "required_proficiency": "Intermediate", "weight": 15}
+    ]
+  },
+  {
+    "id": 14,
+    "title": "DevOps Engineer",
+    "company": "CloudNest Systems",
+    "location": "Mumbai",
+    "experience": "1-3 Years",
+    "salary": "₹6.5 - ₹9.5 LPA",
+    "job_type": "Full-time",
+    "description": "Automate CI/CD build pipelines, manage Kubernetes cluster orchestration, configure Docker environments, and administer AWS servers.",
+    "application_url": "https://cloudnest.example.com/careers/devops",
+    "skills": [
+      {"name": "Docker", "required_proficiency": "Intermediate", "weight": 25},
+      {"name": "Kubernetes", "required_proficiency": "Basic", "weight": 20},
+      {"name": "CI/CD", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "AWS", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "Linux", "required_proficiency": "Intermediate", "weight": 15}
+    ]
+  },
+  {
+    "id": 15,
+    "title": "NLP Researcher",
+    "company": "InnoByte AI Solutions",
+    "location": "Remote",
+    "experience": "1-3 Years",
+    "salary": "₹8.0 - ₹11.0 LPA",
+    "job_type": "Full-time",
+    "description": "Research and implement natural language understanding models for sentiment analysis, entity extraction, and conversational agents.",
+    "application_url": "https://innobyte.example.com/jobs/nlp-researcher",
+    "skills": [
+      {"name": "Python", "required_proficiency": "Advanced", "weight": 30},
+      {"name": "NLP", "required_proficiency": "Advanced", "weight": 35},
+      {"name": "PyTorch", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "Machine Learning", "required_proficiency": "Intermediate", "weight": 15}
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Database Administrator",
+    "company": "DataBridge Technologies",
+    "location": "Vadodara",
+    "experience": "1-3 Years",
+    "salary": "₹5.5 - ₹7.5 LPA",
+    "job_type": "Full-time",
+    "description": "Manage and optimize PostgreSQL and MongoDB database clusters, ensure query performance tuning, backups, and security policies.",
+    "application_url": "https://databridge.example.com/careers/dba",
+    "skills": [
+      {"name": "SQL", "required_proficiency": "Advanced", "weight": 35},
+      {"name": "PostgreSQL", "required_proficiency": "Advanced", "weight": 30},
+      {"name": "MongoDB", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "Linux", "required_proficiency": "Basic", "weight": 15}
+    ]
+  },
+  {
+    "id": 17,
+    "title": "QA Automation Intern",
+    "company": "NextGen Software",
+    "location": "Ahmedabad",
+    "experience": "Fresher",
+    "salary": "₹15,000 / month Stipend",
+    "job_type": "Internship",
+    "description": "Write automated test scripts in Python to validate REST APIs and web software user interfaces prior to release cycles.",
+    "application_url": "https://nextgen.example.com/internships/qa",
+    "skills": [
+      {"name": "Python", "required_proficiency": "Intermediate", "weight": 40},
+      {"name": "REST API", "required_proficiency": "Basic", "weight": 30},
+      {"name": "Git", "required_proficiency": "Basic", "weight": 30}
+    ]
+  },
+  {
+    "id": 18,
+    "title": "Deep Learning Engineer",
+    "company": "InnoByte AI Solutions",
+    "location": "Bangalore",
+    "experience": "1-3 Years",
+    "salary": "₹8.5 - ₹12.0 LPA",
+    "job_type": "Full-time",
+    "description": "Design computer vision and deep learning models using PyTorch / TensorFlow and deploy model APIs to cloud containers.",
+    "application_url": "https://innobyte.example.com/jobs/dl-engineer",
+    "skills": [
+      {"name": "Python", "required_proficiency": "Advanced", "weight": 25},
+      {"name": "Deep Learning", "required_proficiency": "Advanced", "weight": 30},
+      {"name": "PyTorch", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "TensorFlow", "required_proficiency": "Intermediate", "weight": 15},
+      {"name": "Docker", "required_proficiency": "Basic", "weight": 10}
+    ]
+  },
+  {
+    "id": 19,
+    "title": "Junior Java Developer",
+    "company": "DevCore Labs",
+    "location": "Surat",
+    "experience": "0-2 Years",
+    "salary": "₹4.2 - ₹6.2 LPA",
+    "job_type": "Full-time",
+    "description": "Develop enterpise backend components using Core Java, SQL relational databases, and Git revision control.",
+    "application_url": "https://devcore.example.com/careers/jr-java",
+    "skills": [
+      {"name": "Java", "required_proficiency": "Advanced", "weight": 45},
+      {"name": "SQL", "required_proficiency": "Intermediate", "weight": 30},
+      {"name": "Git", "required_proficiency": "Basic", "weight": 25}
+    ]
+  },
+  {
+    "id": 20,
+    "title": "Cybersecurity Analyst Intern",
+    "company": "CloudNest Systems",
+    "location": "Remote",
+    "experience": "Fresher",
+    "salary": "₹20,000 / month Stipend",
+    "job_type": "Internship",
+    "description": "Assist our security operations team in network monitoring, Linux vulnerability scanning, and security auditing.",
+    "application_url": "https://cloudnest.example.com/internships/cyber",
+    "skills": [
+      {"name": "Cybersecurity", "required_proficiency": "Intermediate", "weight": 45},
+      {"name": "Linux", "required_proficiency": "Intermediate", "weight": 35},
+      {"name": "Python", "required_proficiency": "Basic", "weight": 20}
+    ]
+  },
+  {
+    "id": 21,
+    "title": "Flask API Specialist",
+    "company": "TechNova Solutions",
+    "location": "Ahmedabad",
+    "experience": "0-2 Years",
+    "salary": "₹4.2 - ₹6.0 LPA",
+    "job_type": "Full-time",
+    "description": "Specialize in crafting minimal, performant microservice REST APIs with Python Flask, SQLite/SQLAlchemy, and Docker.",
+    "application_url": "https://technova.example.com/careers/flask-dev",
+    "skills": [
+      {"name": "Python", "required_proficiency": "Intermediate", "weight": 30},
+      {"name": "Flask", "required_proficiency": "Advanced", "weight": 30},
+      {"name": "REST API", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "SQL", "required_proficiency": "Intermediate", "weight": 20}
+    ]
+  },
+  {
+    "id": 22,
+    "title": "Business Intelligence Developer",
+    "company": "DataBridge Technologies",
+    "location": "Ahmedabad",
+    "experience": "1-3 Years",
+    "salary": "₹5.0 - ₹7.0 LPA",
+    "job_type": "Full-time",
+    "description": "Design corporate analytical dashboards in Power BI, author complex SQL queries, and perform statistical reporting.",
+    "application_url": "https://databridge.example.com/careers/bi-dev",
+    "skills": [
+      {"name": "Power BI", "required_proficiency": "Advanced", "weight": 35},
+      {"name": "SQL", "required_proficiency": "Advanced", "weight": 30},
+      {"name": "Excel", "required_proficiency": "Advanced", "weight": 20},
+      {"name": "Statistics", "required_proficiency": "Basic", "weight": 15}
+    ]
+  },
+  {
+    "id": 23,
+    "title": "Node.js Backend Developer",
+    "company": "BrightStack Technologies",
+    "location": "Bangalore",
+    "experience": "0-2 Years",
+    "salary": "₹4.5 - ₹6.8 LPA",
+    "job_type": "Full-time",
+    "description": "Build asynchronous real-time backend API servers using Node.js, Express, MongoDB, and TypeScript.",
+    "application_url": "https://brightstack.example.com/jobs/node-dev",
+    "skills": [
+      {"name": "Node.js", "required_proficiency": "Intermediate", "weight": 35},
+      {"name": "JavaScript", "required_proficiency": "Advanced", "weight": 25},
+      {"name": "MongoDB", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "TypeScript", "required_proficiency": "Basic", "weight": 20}
+    ]
+  },
+  {
+    "id": 24,
+    "title": "Python Automation Engineer",
+    "company": "CodeSphere Labs",
+    "location": "Surat",
+    "experience": "0-2 Years",
+    "salary": "₹4.0 - ₹5.8 LPA",
+    "job_type": "Full-time",
+    "description": "Automate data pipelines, system maintenance, and scraping tasks using Python scripts, Linux cron, and Git.",
+    "application_url": "https://codesphere.example.com/careers/py-auto",
+    "skills": [
+      {"name": "Python", "required_proficiency": "Advanced", "weight": 40},
+      {"name": "Linux", "required_proficiency": "Intermediate", "weight": 30},
+      {"name": "Git", "required_proficiency": "Basic", "weight": 30}
+    ]
+  },
+  {
+    "id": 25,
+    "title": "Junior Data Engineer",
+    "company": "DataBridge Technologies",
+    "location": "Mumbai",
+    "experience": "0-2 Years",
+    "salary": "₹5.2 - ₹7.2 LPA",
+    "job_type": "Full-time",
+    "description": "Construct ETL data pipelines using Python, SQL, PostgreSQL, Redis, and basic cloud storage containers.",
+    "application_url": "https://databridge.example.com/careers/jr-data-eng",
+    "skills": [
+      {"name": "Python", "required_proficiency": "Intermediate", "weight": 30},
+      {"name": "SQL", "required_proficiency": "Advanced", "weight": 30},
+      {"name": "PostgreSQL", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "Redis", "required_proficiency": "Basic", "weight": 20}
+    ]
+  },
+  {
+    "id": 26,
+    "title": "UI/UX Web Developer",
+    "company": "BrightStack Technologies",
+    "location": "Vadodara",
+    "experience": "0-1 Years",
+    "salary": "₹3.8 - ₹5.2 LPA",
+    "job_type": "Full-time",
+    "description": "Create modern UI component libraries with HTML, CSS, JavaScript, Bootstrap 5, and Tailwind CSS.",
+    "application_url": "https://brightstack.example.com/careers/ui-web-dev",
+    "skills": [
+      {"name": "HTML", "required_proficiency": "Advanced", "weight": 30},
+      {"name": "CSS", "required_proficiency": "Advanced", "weight": 35},
+      {"name": "JavaScript", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "Bootstrap", "required_proficiency": "Intermediate", "weight": 15}
+    ]
+  },
+  {
+    "id": 27,
+    "title": "AI Product Development Intern",
+    "company": "InnoByte AI Solutions",
+    "location": "Remote",
+    "experience": "Fresher",
+    "salary": "₹22,000 / month Stipend",
+    "job_type": "Internship",
+    "description": "Collaborate on prototype AI applications connecting Python ML backends with clean Web REST APIs.",
+    "application_url": "https://innobyte.example.com/internships/ai-product",
+    "skills": [
+      {"name": "Python", "required_proficiency": "Intermediate", "weight": 30},
+      {"name": "Machine Learning", "required_proficiency": "Intermediate", "weight": 30},
+      {"name": "REST API", "required_proficiency": "Basic", "weight": 20},
+      {"name": "FastAPI", "required_proficiency": "Basic", "weight": 20}
+    ]
+  },
+  {
+    "id": 28,
+    "title": "Cloud Infrastructure Associate",
+    "company": "CloudNest Systems",
+    "location": "Bangalore",
+    "experience": "1-3 Years",
+    "salary": "₹6.0 - ₹8.5 LPA",
+    "job_type": "Full-time",
+    "description": "Deploy secure cloud environments on AWS & Azure, manage server security rules, and write infrastructure scripts.",
+    "application_url": "https://cloudnest.example.com/careers/cloud-assoc",
+    "skills": [
+      {"name": "AWS", "required_proficiency": "Intermediate", "weight": 35},
+      {"name": "Azure", "required_proficiency": "Intermediate", "weight": 30},
+      {"name": "Linux", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "Docker", "required_proficiency": "Basic", "weight": 15}
+    ]
+  },
+  {
+    "id": 29,
+    "title": "Python Microservices Developer",
+    "company": "TechNova Solutions",
+    "location": "Remote",
+    "experience": "1-3 Years",
+    "salary": "₹6.0 - ₹8.8 LPA",
+    "job_type": "Full-time",
+    "description": "Construct distributed backend microservices with Python, FastAPI, Docker, and PostgreSQL databases.",
+    "application_url": "https://technova.example.com/careers/py-microservices",
+    "skills": [
+      {"name": "Python", "required_proficiency": "Advanced", "weight": 30},
+      {"name": "FastAPI", "required_proficiency": "Intermediate", "weight": 25},
+      {"name": "Docker", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "PostgreSQL", "required_proficiency": "Intermediate", "weight": 15},
+      {"name": "Git", "required_proficiency": "Basic", "weight": 10}
+    ]
+  },
+  {
+    "id": 30,
+    "title": "Computer Vision & ML Intern",
+    "company": "CodeSphere Labs",
+    "location": "Rajkot",
+    "experience": "Fresher",
+    "salary": "₹18,000 / month Stipend",
+    "job_type": "Internship",
+    "description": "Work on computer vision algorithms, image processing, and ML model training using Python, NumPy, and PyTorch.",
+    "application_url": "https://codesphere.example.com/internships/cv-ml",
+    "skills": [
+      {"name": "Python", "required_proficiency": "Intermediate", "weight": 35},
+      {"name": "Machine Learning", "required_proficiency": "Intermediate", "weight": 30},
+      {"name": "NumPy", "required_proficiency": "Intermediate", "weight": 20},
+      {"name": "PyTorch", "required_proficiency": "Basic", "weight": 15}
+    ]
+  }
+]
